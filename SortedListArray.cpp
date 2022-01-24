@@ -17,17 +17,17 @@ class SortedListArray
 {
 
    private:
-   int max_list;
-   T** items;
-   // ListArray<T>* Theitems;// int compare_items;// int compare_keys;
-      int sze;
-	  void arrayResize(int new_max_size)
+      int max_list;
+      T** items;
 
-	  int (*comp_item)(T* item_1,T* item_2);
-	  int (*comp_key)(String* key,T* item );
-	  int  binary_search(T* item )
-	  int binary_search2(T* item )
-    public:
+      int sze;
+      void arrayResize(int new_max_size)
+
+      int (*comp_item)(T* item_1,T* item_2);
+      int (*comp_key)(String* key,T* item );
+      int binary_search(T* item );
+      int binary_search2(T* item );
+   public:
       SortedListArray(int*comp_items,int * comp_keys);
       ~SortedListArray();
       bool isEmpty();
@@ -35,7 +35,7 @@ class SortedListArray
       void add(T* item); 
       T* get(String* search_key);
       void remove(String* search_key);
-	  ListArrayIterator<T>* iterator();
+      ListArrayIterator<T>* iterator();
 };
 SortedListArray::size()
 {
@@ -118,7 +118,6 @@ void SortedListArray<T>::remove(String* search_key)
    items[sz - 1] = NULL;
    sz--;
 
-
 }
 
 template	<class	T>
@@ -129,27 +128,26 @@ ListArrayIterator<T>* SortedListArray<T>::iterator()
 }
 
 template	<class	T>
-int SortedListArray<T>::binary_search(T* item);
+int SortedListArray<T>::binary_search(T* item)
 {
 	//post: If the search is successful, the index of the match is returned (1-based)
-//if the search is unsuccessful, -1 is returned
-    int front,end,mid;
-    front=0
+   //if the search is unsuccessful, -1 is returned
+    int front=0,end,FoundMidValue;
     end=sze-1
-    mid= front+((end-front)/2)
+    FoundMidValue= front+((end-front)/2)
     
     while(front <=end)
     {
-        int cmp =comp_item(item_1,items[mid] ) ;
+        int cmp = comp_item(item_1,items[FoundMidValue] ) ;
         if(0 == cmp)
-            return mid+1;
+            return FoundMidValue+1;
         else if(-1==cmp)
-            end=mid-1
+            end=FoundMidValue-1
             else
-                front=mid+1
-                mid=front+ floor((end-front)/2)
+                front=FoundMidValue+1
+                FoundMidValue=front+ floor((end-front)/2)
                 }
-    return mid+1;
+    return FoundMidValue+1;
 }
 
 

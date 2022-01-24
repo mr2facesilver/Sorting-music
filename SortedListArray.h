@@ -17,58 +17,63 @@ class SortedListArray
 {
 
    private:
-   int max_list;
-   T** items;
-   // ListArray<T>* Theitems;// int compare_items;// int compare_keys;
+      int max_list;
+      T** items;
       int sze;
-	  //pre:none
-	  //post:none
-	  void arrayResize(int new_max_size);
-		//pre:it get a new maxsize
-	  //post:it returns nothing just changes the size of the array
-	  int (*compare_items)(T* item_1,T* item_2);
-	  //pre:takes in two items of the same type
-	  //post:returns an int
-	  
-	  int (*compare_keys)(String* key,T* item );
-	  //pre:takes in a string and item
-	  //post:return 1 ,0 or -1
-	  
-	  int  binary_search(T* item );
-	 
-	  //pre:used for add and need an item
-	  //post:it returns a int
-	  
-	  int binary_search2(String* item );
-	  //pre:used for delete and get
-	  //post: it returns a int
-	  
-    public:
+
+
+      void arrayResize(int new_max_size);
+      //pre:Arrays' new size.
+      //post:Increase the array size
+
+      int (*compare_items)(T* item_1,T* item_2);
+      //pre:takes in two items of the same type
+      //post:returns a 1,0, or -1
+
+      int (*compare_keys)(String* key,T* item );
+      //pre:takes in a string and item
+      //post:return 1 ,0 or -1
+
+      int  binary_search(T* item );
+      //pre:used for add and need an item
+      //post:it returns a int
+
+      int binary_search2(String* item );
+      //pre:used for delete and get
+      //post: it returns a int
+
+   public:
       SortedListArray(int (*comp_items)(T* item_1,T* item_2), int (*comp_keys)(String* key, T* item));
-	  //pre:takeing in two funtions that compare.
-	  //post: contruct a array of size two
-	  
+      //pre:takeing in two funtions that compare.
+      //post: contruct a array of size two
+
       ~SortedListArray();
-	  //pre:none
-	  //post:a deleted array
+      //pre:none
+      //post:Deleted Array Ojbect
+
       bool isEmpty();
-	  //pre:nothing
-	  //post:nothing
+      //pre:none
+      //post:none
+
       int size();
-	  //pre:none
-	  //post:return the size
+      //pre:none
+      //post:return the size
+
       void add(T* item); 
-	  //pre:takes in a item
-	  //post:adds that item to a list
+      //pre:takes in a item
+      //post:adds that item to a list
+
       T* get(String* search_key);
-	  //pre:takes in a stirng 
-	  //post: returns the location of a item
+      //pre:takes in a stirng 
+      //post: returns the location of a item
+
       void remove(String* search_key);
-	  //pre:takes in a string
-	  //post:returns the item to be deleted
-	  ListArrayIterator<T>* iterator();
-	  //pre:none
-	  //post:creats and iterator
+      //pre:takes in a string
+      //post:Removes an item from the Array. 
+
+      ListArrayIterator<T>* iterator();
+      //pre:none
+      //post:creats an iterator
 };
 template <class T>
 int SortedListArray<T>::size()
